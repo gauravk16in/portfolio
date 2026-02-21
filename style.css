@@ -28,7 +28,7 @@ body {
   background: var(--card-bg);
   font-family: "Source Serif 4", serif;
   min-height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .header {
@@ -170,14 +170,28 @@ span {
 }
 
 @media (max-width: 768px) {
+
   .content {
     flex-direction: column;
     gap: 40px;
   }
 
-  .left,
   .right {
-    flex: unset;
-    width: 100%;
+    margin-left: 0;        
+    align-items: center; 
   }
+
+  .projects {
+    width: auto;       
+  }
+
+  .footer{
+
+    text-align: center;
+    flex-direction: column;
+    gap:15px;
+    
+
+  }
+
 }
