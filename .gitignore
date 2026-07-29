@@ -1,0 +1,16 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Vercel (CLI link + local dev/serve state from serverless functions in /api)
+.vercel
+
+# Local editor / AI-tooling configs (can hold API keys)
+.continue/
+
+AGENTS.md
