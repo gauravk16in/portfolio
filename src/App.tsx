@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { NavBar } from './components/NavBar';
 import { Bio } from './components/Bio';
 import { PillsList } from './components/PillsList';
@@ -128,6 +129,9 @@ export default function App() {
         activeProject={activeProject}
         setActiveProject={setActiveProject}
       />
+
+      {/* VERCEL WEB ANALYTICS */}
+      <Analytics />
 
     </div>
   );
