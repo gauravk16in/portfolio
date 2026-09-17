@@ -30,9 +30,15 @@
       <span class="sr-only" id="music-status" role="status"></span>
     </header>
     <main id="main" tabindex="-1">
-      <h1 class="sr-only">daily notes</h1>
-      <ol class="log-list" id="logs"></ol>
-      <noscript>Please enable JavaScript to read the daily notes.</noscript>
+      <div id="home-view">
+        <h1 class="sr-only">daily notes</h1>
+        <ol class="log-list" id="logs"></ol>
+        <noscript>Please enable JavaScript to read the daily notes.</noscript>
+      </div>
+      <div id="reading-view" class="reading-page" hidden>
+        <a class="back-link" href="./" id="back-link">← back</a>
+        <article id="log"></article>
+      </div>
     </main>
     <footer class="site-footer">
       <div class="illustration-slot" data-illustration aria-hidden="true"></div>

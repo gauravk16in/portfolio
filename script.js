@@ -77,35 +77,118 @@ if (audio) {
   });
 }
 
+// Builds the reading-page markup for a note. Shared by the homepage's in-page
+// note view and the standalone log/ page, so both render identically.
+function buildNoteArticle(note) {
+  const fragment = document.createDocumentFragment();
+  if (!note) {
+    const heading = document.createElement("h1");
+    heading.textContent = "this note isn’t here.";
+    const message = document.createElement("p");
+    message.textContent = "The link may be incomplete, or the note may have moved. You can return to the notebook above.";
+    fragment.append(heading, message);
+    return { fragment, title: `Note not found — ${site.name}` };
+  }
+  const date = document.createElement("time");
+  date.className = "log-date";
+  date.dateTime = note.publishedAt;
+  date.textContent = `${note.date} -`;
+  const heading = document.createElement("h1");
+  heading.textContent = note.heading || note.title;
+  const body = document.createElement("div");
+  body.className = "note-content";
+  // Only the owner's hand-authored HTML in logs.js is rendered as markup.
+  body.innerHTML = note.content;
+  fragment.append(date, heading, body);
+  return { fragment, title: `${note.heading || note.title} — ${site.name}` };
+}
+
 const list = document.querySelector("#logs");
 if (list) {
-  // Animate the existing footer skater before ordinary page navigation. Modified clicks
-  // retain native new-tab behavior. Reduced-motion users navigate immediately.
+  // Notes open in place (no real navigation) so the audio element, if playing,
+  // is never torn down. The log/ URL still exists as a real page for direct
+  // links, refreshes, and JS-disabled visitors.
+  const homeView = document.querySelector("#home-view");
+  const readingView = document.querySelector("#reading-view");
+  const articleEl = readingView.querySelector("#log");
+  const backLink = document.querySelector("#back-link");
+  const siteNameLink = document.querySelector("[data-site-name]");
+  const mainEl = document.querySelector("main");
   const footer = document.querySelector(".site-footer");
   const loadingStatus = document.createElement("span");
   loadingStatus.className = "sr-only";
   loadingStatus.setAttribute("role", "status");
   footer.append(loadingStatus);
-  let navigationTimer = null;
-  list.addEventListener("click", (event) => {
-    const link = event.target.closest(".log-link");
-    if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    event.preventDefault();
-    if (navigationTimer !== null) return;
-    footer.classList.add("is-loading");
-    loadingStatus.textContent = "Opening note…";
-    document.querySelector("main").setAttribute("aria-busy", "true");
-    navigationTimer = window.setTimeout(() => window.location.assign(link.href), 700);
-  });
-  window.addEventListener("pageshow", () => {
+  const defaultTitle = `${site.name} — figuring.0ut()`;
+  document.title = defaultTitle;
+
+  function showNote(id) {
+    const note = logs.find((entry) => entry.id === id);
+    articleEl.replaceChildren();
+    const { fragment, title } = buildNoteArticle(note);
+    articleEl.append(fragment);
+    document.title = title;
+    homeView.hidden = true;
+    readingView.hidden = false;
+    mainEl.focus();
+  }
+
+  function showHome() {
+    readingView.hidden = true;
+    homeView.hidden = false;
+    document.title = defaultTitle;
+    mainEl.focus();
+  }
+
+  function clearLoadingState() {
     window.clearTimeout(navigationTimer);
     navigationTimer = null;
     footer.classList.remove("is-loading");
     loadingStatus.textContent = "";
-    document.querySelector("main").removeAttribute("aria-busy");
+    mainEl.removeAttribute("aria-busy");
+  }
+
+  let navigationTimer = null;
+  list.addEventListener("click", (event) => {
+    const link = event.target.closest(".log-link");
+    if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    if (navigationTimer !== null) return;
+    const id = new URLSearchParams(new URL(link.href).search).get("id");
+    const open = () => {
+      clearLoadingState();
+      history.pushState({ id }, "", link.href);
+      showNote(id);
+    };
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      open();
+      return;
+    }
+    footer.classList.add("is-loading");
+    loadingStatus.textContent = "Opening note…";
+    mainEl.setAttribute("aria-busy", "true");
+    navigationTimer = window.setTimeout(open, 700);
   });
-  document.title = `${site.name} — figuring.0ut()`;
+
+  function goHome(event, url) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    clearLoadingState();
+    history.pushState({}, "", url);
+    showHome();
+  }
+  backLink.addEventListener("click", (event) => goHome(event, backLink.href));
+  siteNameLink.addEventListener("click", (event) => {
+    if (readingView.hidden) return; // Already home; let the normal link behave.
+    goHome(event, siteNameLink.href);
+  });
+
+  window.addEventListener("popstate", () => {
+    clearLoadingState();
+    const id = new URLSearchParams(window.location.search).get("id");
+    if (id) { showNote(id); } else { showHome(); }
+  });
+
   const newestFirst = [...logs].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
   if (!newestFirst.length) {
     const empty = document.createElement("li");
