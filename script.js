@@ -1,9 +1,25 @@
 // This script runs on both pages. Relative URLs also work under a subdirectory.
 const sharedScriptUrl = document.querySelector('script[src$="/script.js"], script[src="script.js"]').src;
 const portfolioRoot = new URL("./", sharedScriptUrl);
-
+// The homepage swaps views via history.pushState, which moves the address bar
+// (and therefore the base URL any *relative* href resolves against) between
+// "/" and "/log/". Any link left as a relative string would then resolve
+// against whichever URL happens to be current, drifting further with every
+// round trip (e.g. "old/" -> "/log/old/" -> "/log/log/old/"...). Rewriting
+// internal links to absolute URLs, anchored once to the real root, makes
+// them immune to that drift no matter how many times the view changes.
+function toRoot(path) {
+  return new URL(path, portfolioRoot).href;
+}
 document.querySelectorAll("[data-site-name]").forEach((element) => {
   element.textContent = site.name;
+  if (element.tagName === "A") element.href = portfolioRoot.href;
+});
+document.querySelectorAll(".back-link").forEach((element) => {
+  element.href = portfolioRoot.href;
+});
+document.querySelectorAll(".old-portfolio-link").forEach((element) => {
+  element.href = toRoot("old/");
 });
 document.querySelectorAll("[data-year]").forEach((element) => {
   element.textContent = site.year;
@@ -199,7 +215,7 @@ if (list) {
     const item = document.createElement("li");
     const link = document.createElement("a");
     link.className = "log-link";
-    link.href = `log/?id=${encodeURIComponent(log.id)}`;
+    link.href = toRoot(`log/?id=${encodeURIComponent(log.id)}`);
     const date = document.createElement("time");
     date.className = "log-date";
     date.dateTime = log.publishedAt;
