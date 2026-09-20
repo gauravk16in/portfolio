@@ -8,7 +8,7 @@ const logs = [
     date: "Thu 17 Sep 21:42pm",
     title: "today i learnt how to calculate orbit velocity",
     heading: "so let’s see how to find the velocity",
-    // Starter note based on the topic in the sketch. Edit or replace freely.
+    
     content: `
       <p>first why i’m doing this ........<br>
       i wanted to understand what keeps something in orbit.</p>
@@ -44,4 +44,72 @@ const velocity = Math.sqrt(mu / radius);
       <p>this is the ideal circular-orbit case. a higher orbit means a lower orbital speed. that’s the part i wanted to remember.</p>
     `,
   },
+
+  {
+
+    id: "2026-09-21",
+    publishedAt: "2026-09-21T02:45:00+05:30",
+    date: "Mon 21 Sep 02:45am",
+    title: "I re-revised every basic concept of JAVA",
+    heading: "I was having trouble in solving problems with Java, so I revised every concept.",
+
+    content:`
+
+
+    <p>It all started with a problem where I was suck as I used to code in python then C++ but now I have switch to Java
+
+    <figure>
+      <img src="/assets/java-notes.png" alt="Java concepts I revised">
+      <figcaption>Java revision notes.</figcaption>
+    </figure>
+
+    <br> I was revising from 2 days btw and here is what I learnt till the date...
+    #1 working of java program
+    #2 intro to JVM , JRE, and JDK
+    #3 creating a class in java
+    #4 a basic java program
+    #5 keywords in java
+    #6 variables
+    #7 data types
+    #8 data types and implicit conversion
+    #9 explict conversion
+    #10 binary number system overview
+    #11 converting binary to decimal
+    #12 binary addition
+    #13 binary subtraction
+    #14 two's compliment
+    #15 types of operators
+    #16 arithmetic operations
+    #17 relational operators
+    #18 logical operators
+    #19 bitwise operators
+    #20 increment, decrement, and ternary operator
+    #21 taking user input
+    #22 conditional statements
+    #23 if else, nested if else , elif
+    #24 ternary operators adv
+    #25 loops 
+    #26 elements 
+    #27 break and continue statement
+    #28 nested loops
+    #29 pattern matching
+    #30 labeled break and continue statements
+    #31 arrrays and it's working
+    #32 for each loop
+    #33 2d arrays
+    #34 methods / functions
+    #35 components of method, calling methods
+    #36 parameters of methods
+    #37 maths class method
+    #38 java strings
+    #39 creating java string
+    #40 comparisions 
+    </p>
+
+
+    `,
+
+
+
+  }
 ];
