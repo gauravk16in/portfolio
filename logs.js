@@ -110,7 +110,7 @@ const velocity = Math.sqrt(mu / radius);
 
   {
 
-    id: "2026-09-21",
+    id: "2026-09-21-02",
     publishedAt: "2026-09-21T03:45:00+05:30",
     date: "Mon 21 Sep 03:45am",
     title: "Oops - Part (Class and objects)",
