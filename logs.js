@@ -106,5 +106,46 @@ const velocity = Math.sqrt(mu / radius);
 
 
 
-  }
+  },
+
+  {
+
+    id: "2026-09-21",
+    publishedAt: "2026-09-21T03:45:00+05:30",
+    date: "Mon 21 Sep 03:45am",
+    title: "Oops - Part (Class and objects)",
+    heading: "Object oriented programming is the way to solve real world problems",
+
+    content: `
+      <p>
+      Let's start with what I learnt about class<br>
+      so, Class is a way to arrange data and behaviour informations. 
+      and Object is an instance of class which has those properties & behaviour attached.<br>
+
+      I have attached my understanding with chocolate factory example 
+      refer the image attached below for some fun understanding.
+      </p>
+
+      <figure>
+        <img src="../assets/classes.png" alt="classes and objects">
+        <figcaption>classes and objects</figcaption>
+      </figure>
+
+      <p>Few logical things to understand and recap better-
+
+      A class can be decelared once only while object can be declared multiple times.<br>
+      Class doesn't take any memory while object does once created.
+
+      and how I can forget - we can create custom classes (user defined)
+
+
+      
+      </p>
+
+
+    `,
+
+
+
+  },
 ];
