@@ -53,60 +53,55 @@ const velocity = Math.sqrt(mu / radius);
     title: "I re-revised every basic concept of JAVA",
     heading: "I was having trouble in solving problems with Java, so I revised every concept.",
 
-    content:`
-
-
-    <p>It all started with a problem where I was suck as I used to code in python then C++ but now I have switch to Java
-
-    <figure>
-      <img src="/assets/java-notes.png" alt="Java concepts I revised">
-      <figcaption>Java revision notes.</figcaption>
-    </figure>
-
-    <br> I was revising from 2 days btw and here is what I learnt till the date...
-    #1 working of java program
-    #2 intro to JVM , JRE, and JDK
-    #3 creating a class in java
-    #4 a basic java program
-    #5 keywords in java
-    #6 variables
-    #7 data types
-    #8 data types and implicit conversion
-    #9 explict conversion
-    #10 binary number system overview
-    #11 converting binary to decimal
-    #12 binary addition
-    #13 binary subtraction
-    #14 two's compliment
-    #15 types of operators
-    #16 arithmetic operations
-    #17 relational operators
-    #18 logical operators
-    #19 bitwise operators
-    #20 increment, decrement, and ternary operator
-    #21 taking user input
-    #22 conditional statements
-    #23 if else, nested if else , elif
-    #24 ternary operators adv
-    #25 loops 
-    #26 elements 
-    #27 break and continue statement
-    #28 nested loops
-    #29 pattern matching
-    #30 labeled break and continue statements
-    #31 arrrays and it's working
-    #32 for each loop
-    #33 2d arrays
-    #34 methods / functions
-    #35 components of method, calling methods
-    #36 parameters of methods
-    #37 maths class method
-    #38 java strings
-    #39 creating java string
-    #40 comparisions 
-    </p>
-
-
+    content: `
+      <p>It all started with a problem where I was stuck as I used to code in Python then C++, but now I have switched to Java.</p>
+      <figure>
+        <img src="../assets/java-notes.png" alt="Java concepts I revised">
+        <figcaption>Java revision notes.</figcaption>
+      </figure>
+      <p>I was revising for 2 days, and here is what I learnt till now:</p>
+      <ol>
+        <li>Working of Java program</li>
+        <li>Intro to JVM, JRE, and JDK</li>
+        <li>Creating a class in Java</li>
+        <li>A basic Java program</li>
+        <li>Keywords in Java</li>
+        <li>Variables</li>
+        <li>Data types</li>
+        <li>Data types and implicit conversion</li>
+        <li>Explicit conversion</li>
+        <li>Binary number system overview</li>
+        <li>Converting binary to decimal</li>
+        <li>Binary addition</li>
+        <li>Binary subtraction</li>
+        <li>Two's complement</li>
+        <li>Types of operators</li>
+        <li>Arithmetic operations</li>
+        <li>Relational operators</li>
+        <li>Logical operators</li>
+        <li>Bitwise operators</li>
+        <li>Increment, decrement, and ternary operator</li>
+        <li>Taking user input</li>
+        <li>Conditional statements</li>
+        <li>If-else, nested if-else, else-if</li>
+        <li>Ternary operators advanced</li>
+        <li>Loops</li>
+        <li>Elements</li>
+        <li>Break and continue statement</li>
+        <li>Nested loops</li>
+        <li>Pattern matching</li>
+        <li>Labeled break and continue statements</li>
+        <li>Arrays and how they work</li>
+        <li>For-each loop</li>
+        <li>2D arrays</li>
+        <li>Methods / functions</li>
+        <li>Components of method, calling methods</li>
+        <li>Parameters of methods</li>
+        <li>Math class methods</li>
+        <li>Java strings</li>
+        <li>Creating Java strings</li>
+        <li>Comparisons</li>
+      </ol>
     `,
 
 
